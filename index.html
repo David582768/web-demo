@@ -4,211 +4,714 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Café Aurora | Un momento para ti</title>
-  <meta name="description" content="Descubre Café Aurora: café de especialidad, postres artesanales y momentos únicos.">
+  <meta name="theme-color" content="#f8f5ee">
+  <meta name="description" content="Café Aurora: café de especialidad, repostería artesanal y momentos para disfrutar sin prisa.">
+  <title>Café Aurora — Un lugar para volver</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --cream: #f8f5ee;
+      --paper: #fffdf8;
+      --green: #263d32;
+      --green-light: #dfe7d9;
+      --orange: #bd7048;
+      --ink: #252c25;
+      --muted: #77796f;
+      --line: #e5e0d5;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --dark: #201b17;
-      --cream: #f7f1e8;
-      --gold: #c69a63;
-      --muted: #c9bcae;
-    }
-
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
       background: var(--cream);
-      color: var(--dark);
-      line-height: 1.6;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
-      background: var(--dark);
+    img { display: block; width: 100%; object-fit: cover; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .container { width: min(1160px, 86%); margin: 0 auto; }
+    .serif { font-family: var(--serif); font-weight: 500; }
+    .eyebrow {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .announcement {
+      padding: 8px 15px;
+      text-align: center;
+      background: var(--green);
+      color: #f8f5ee;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248, 245, 238, .96);
+      border-bottom: 1px solid rgba(38, 61, 50, .1);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      text-decoration: none;
+      font-family: var(--serif);
+      font-size: 25px;
+      line-height: 1.1;
+      font-weight: 600;
+      letter-spacing: -.7px;
+    }
+
+    .brand span { color: var(--orange); }
+    .brand small {
+      display: block;
+      margin-top: 5px;
+      font-family: var(--sans);
+      font-size: 8px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 27px; }
+    .nav-links a {
+      font-size: 12px;
+      text-decoration: none;
+      color: #555b51;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 21px;
+      border: 1px solid var(--green);
+      border-radius: 2px;
+      background: var(--green);
       color: white;
-      padding: 22px 8%;
+      font: 600 12px var(--sans);
+      text-decoration: none;
+      transition: background .25s, color .25s, transform .25s;
+    }
+
+    .button:hover { background: var(--orange); border-color: var(--orange); transform: translateY(-2px); }
+    .button-light { background: transparent; color: var(--green); }
+    .button-light:hover { color: white; }
+    .arrow { font-size: 17px; line-height: 1; }
+
+    /* PORTADA */
+
+    .hero {
+      min-height: 570px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 45px;
+      padding-top: 65px;
+      padding-bottom: 65px;
+    }
+
+    .hero-copy { padding: 20px 0; }
+
+    .hero h1 {
+      max-width: 590px;
+      margin: 22px 0;
+      font: 500 clamp(45px, 5.5vw, 72px)/1.08 var(--serif);
+      letter-spacing: -2px;
+    }
+
+    .hero h1 em { color: var(--orange); font-weight: 400; }
+
+    .hero-description {
+      max-width: 440px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 35px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .5px;
+    }
+
+    .note-line { width: 35px; height: 1px; background: var(--orange); }
+
+    .hero-image { position: relative; padding: 0 0 25px 25px; }
+
+    .hero-image::before {
+      content: "";
+      position: absolute;
+      top: -18px;
+      right: -15px;
+      width: 110px;
+      height: 110px;
+      border-top: 1px solid var(--orange);
+      border-right: 1px solid var(--orange);
+    }
+
+    .hero-image img {
+      position: relative;
+      z-index: 1;
+      height: 445px;
+      object-position: center;
+    }
+
+    .image-caption {
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      bottom: 0;
+      width: 190px;
+      padding: 17px 19px;
+      background: var(--green);
+      color: white;
+    }
+
+    .image-caption strong { display: block; font: 500 20px var(--serif); }
+    .image-caption span { font-size: 10px; color: #d7dfd4; }
+
+    /* FRANJA */
+
+    .values {
+      background: var(--green);
+      color: white;
+      padding: 23px 0;
+    }
+
+    .values-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .value { padding: 5px 12px; }
+    .value strong { display: block; font: 500 18px var(--serif); }
+    .value span { display: block; margin-top: 3px; color: #d4dcd1; font-size: 10px; }
+
+    /* TITULOS Y MENU */
+
+    .section { padding-top: 100px; padding-bottom: 100px; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .section-heading h2 {
+      max-width: 580px;
+      margin-top: 12px;
+      font: 500 clamp(33px, 4vw, 48px)/1.18 var(--serif);
+      letter-spacing: -1px;
+    }
+
+    .section-heading p {
+      max-width: 330px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .menu-card {
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .menu-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(38, 61, 50, .08); }
+
+    .menu-image { height: 225px; overflow: hidden; }
+    .menu-image img { height: 100%; transition: transform .6s; }
+    .menu-card:hover .menu-image img { transform: scale(1.045); }
+
+    .menu-content { padding: 22px; }
+    .menu-category { color: var(--orange); font-size: 9px; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700; }
+    .menu-title-row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-top: 8px; }
+    .menu-title-row h3 { font: 500 21px var(--serif); }
+    .price { white-space: nowrap; color: var(--green); font-size: 12px; font-weight: 700; }
+    .menu-content p { margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 1.8; }
+
+    .menu-bottom {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
+      margin-top: 35px;
+      padding-top: 25px;
+      border-top: 1px solid var(--line);
     }
 
-    .logo { font-size: 23px; font-weight: bold; letter-spacing: 1px; }
-    .logo span { color: var(--gold); }
+    .menu-bottom p { color: var(--muted); font-size: 11px; }
 
-    nav { display: flex; gap: 22px; flex-wrap: wrap; }
-    nav a { color: white; text-decoration: none; font-size: 14px; }
-    nav a:hover { color: var(--gold); }
+    /* HISTORIA */
 
-    .hero {
-      min-height: 520px;
-      padding: 80px 8%;
-      display: flex;
-      align-items: center;
-      background:
-        linear-gradient(90deg, rgba(24,19,15,.94), rgba(24,19,15,.35)),
-        url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1800&q=85")
-        center/cover;
-      color: white;
-    }
+    .story { background: #ece8dd; }
 
-    .hero-content { max-width: 600px; }
-    .eyebrow {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    h1 { font-size: clamp(42px, 6vw, 72px); line-height: 1.08; margin: 20px 0; }
-    .hero p { color: #e2d8cd; font-size: 17px; max-width: 480px; margin-bottom: 30px; }
-
-    .btn {
-      display: inline-block;
-      background: var(--gold);
-      color: #201b17;
-      text-decoration: none;
-      padding: 14px 24px;
-      border-radius: 3px;
-      font-weight: bold;
-      transition: .2s;
-    }
-
-    .btn:hover { background: #e0b77e; transform: translateY(-2px); }
-
-    section { padding: 76px 8%; }
-    .section-heading { max-width: 650px; margin-bottom: 35px; }
-    .section-heading h2 { font-size: clamp(30px, 4vw, 44px); margin: 10px 0; }
-    .section-heading p { color: #6d6259; }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    .card { background: white; padding-bottom: 25px; }
-    .card img { width: 100%; height: 220px; object-fit: cover; display: block; }
-    .card-content { padding: 22px 22px 0; }
-    .card h3 { font-size: 21px; margin-bottom: 8px; }
-    .card p { color: #6d6259; font-size: 14px; }
-
-    .about {
-      background: #e9dfd2;
+    .story-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 50px;
       align-items: center;
+      gap: 75px;
     }
 
-    .about img { width: 100%; max-height: 430px; object-fit: cover; }
-    .about h2 { font-size: clamp(30px, 4vw, 44px); margin: 12px 0 18px; }
-    .about p { color: #62564b; margin-bottom: 22px; }
-
-    .visit { text-align: center; background: var(--dark); color: white; }
-    .visit p { color: var(--muted); margin: 12px 0 25px; }
-    .visit h2 { font-size: clamp(30px, 4vw, 44px); margin-top: 10px; }
-
-    footer {
-      background: #17130f;
-      color: #b9aa9a;
-      text-align: center;
-      padding: 25px 8%;
-      font-size: 13px;
+    .story-photo { position: relative; padding: 0 24px 24px 0; }
+    .story-photo::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      right: 0;
+      bottom: 0;
+      width: 75%;
+      height: 70%;
+      border: 1px solid var(--orange);
     }
 
-    @media (max-width: 760px) {
-      header { align-items: flex-start; flex-direction: column; }
-      nav { gap: 15px; }
-      .hero { min-height: 470px; padding: 65px 7%; }
-      section { padding: 55px 7%; }
-      .cards { grid-template-columns: 1fr; }
-      .card img { height: 240px; }
-      .about { grid-template-columns: 1fr; gap: 25px; }
+    .story-photo img { position: relative; z-index: 1; height: 470px; }
+    .story-copy h2 { margin: 13px 0 22px; font: 500 clamp(35px, 4vw, 50px)/1.15 var(--serif); }
+    .story-copy p { margin-bottom: 15px; color: #68695f; font-size: 12px; line-height: 2; }
+
+    .signature {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 25px;
+    }
+
+    .signature-mark {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      border: 1px solid var(--orange);
+      border-radius: 50%;
+      color: var(--orange);
+      font: italic 23px var(--serif);
+    }
+
+    .signature strong { display: block; font: 500 16px var(--serif); }
+    .signature span { display: block; color: var(--muted); font-size: 10px; }
+
+    /* GALERIA */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr 1fr;
+      grid-template-rows: 220px 180px;
+      gap: 14px;
+    }
+
+    .gallery-item { overflow: hidden; background: var(--line); }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item img { height: 100%; transition: transform .5s; }
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    .gallery-note { margin-top: 23px; color: var(--muted); font-size: 10px; text-align: center; }
+
+    /* VISITA */
+
+    .visit { padding: 0; background: var(--green); color: white; }
+
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+
+    .visit-copy { padding: 85px max(7%, calc((100vw - 1160px) / 2)); padding-right: 50px; }
+    .visit-copy .eyebrow { color: #d6a17e; }
+    .visit-copy h2 { margin: 13px 0 20px; font: 500 clamp(36px, 4vw, 51px)/1.13 var(--serif); }
+    .visit-copy > p { max-width: 410px; color: #d5ddd2; font-size: 12px; line-height: 2; }
+
+    .visit-details { display: grid; grid-template-columns: 1fr 1fr; gap: 25px 18px; margin: 32px 0; }
+    .detail-label { color: #d6a17e; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .detail-value { margin-top: 5px; color: white; font-size: 11px; line-height: 1.8; }
+
+    .visit-image { min-height: 570px; }
+    .visit-image img { height: 100%; min-height: 570px; }
+
+    /* CTA Y FOOTER */
+
+    .final-cta { padding: 78px 0; text-align: center; }
+    .final-cta h2 { max-width: 600px; margin: 12px auto 15px; font: 500 clamp(34px, 4vw, 49px)/1.2 var(--serif); }
+    .final-cta p { max-width: 430px; margin: 0 auto 25px; color: var(--muted); font-size: 12px; }
+
+    footer { background: #202e25; color: #dce1d7; padding: 35px 0 20px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; gap: 25px; padding-bottom: 28px; }
+    .footer-brand { font: 500 25px var(--serif); }
+    .footer-brand span { color: #d6a17e; }
+    .footer-note { color: #b7c2b5; font-size: 10px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .footer-links a { color: #dce1d7; font-size: 10px; text-decoration: none; }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 17px; border-top: 1px solid rgba(255,255,255,.14); color: #b7c2b5; font-size: 9px; }
+
+    @media (max-width: 850px) {
+      .container { width: 90%; }
+      .nav { min-height: 75px; }
+      .nav-links { gap: 15px; }
+      .nav-links a { font-size: 11px; }
+      .hero { gap: 25px; min-height: auto; }
+      .hero-image img { height: 390px; }
+      .story-grid { gap: 35px; }
+      .visit-copy { padding: 60px 8%; }
+      .gallery-grid { grid-template-rows: 190px 160px; }
+    }
+
+    @media (max-width: 620px) {
+      .announcement { font-size: 8px; letter-spacing: 1px; }
+      .container { width: 88%; }
+      .nav { min-height: auto; padding: 17px 0; align-items: flex-start; }
+      .brand { font-size: 22px; }
+      .nav-links { max-width: 210px; justify-content: flex-end; gap: 8px 14px; flex-wrap: wrap; }
+      .nav-links a { font-size: 10px; }
+      .nav-contact { display: none; }
+
+      .hero { grid-template-columns: 1fr; gap: 25px; padding-top: 50px; padding-bottom: 50px; }
+      .hero h1 { font-size: clamp(43px, 12vw, 60px); letter-spacing: -1.5px; }
+      .hero-description { font-size: 13px; }
+      .hero-image { margin: 0 7px 0 0; padding: 0 0 20px 15px; }
+      .hero-image img { height: 330px; }
+      .hero-image::before { width: 75px; height: 75px; right: -8px; }
+      .image-caption { width: 165px; padding: 13px 15px; }
+      .image-caption strong { font-size: 18px; }
+
+      .values-inner { gap: 8px; }
+      .value { padding: 3px; }
+      .value strong { font-size: 15px; }
+      .value span { font-size: 8px; line-height: 1.5; }
+
+      .section { padding-top: 68px; padding-bottom: 68px; }
+      .section-heading { display: block; margin-bottom: 27px; }
+      .section-heading h2 { font-size: 36px; }
+      .section-heading p { margin-top: 13px; }
+      .menu-grid { grid-template-columns: 1fr; gap: 18px; }
+      .menu-image { height: 230px; }
+      .menu-content { padding: 20px; }
+      .menu-bottom { align-items: flex-start; flex-direction: column; }
+
+      .story-grid { grid-template-columns: 1fr; gap: 35px; }
+      .story-photo img { height: 350px; }
+      .story-copy h2 { font-size: 39px; }
+
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 230px 150px 150px; gap: 9px; }
+      .gallery-item:first-child { grid-column: span 2; grid-row: auto; }
+      .gallery-item:last-child { grid-column: span 2; }
+
+      .visit-grid { grid-template-columns: 1fr; }
+      .visit-copy { padding: 65px 6%; }
+      .visit-copy h2 { font-size: 41px; }
+      .visit-image, .visit-image img { min-height: 310px; height: 310px; }
+      .visit-details { gap: 22px 10px; }
+
+      .final-cta { padding: 65px 0; }
+      .final-cta h2 { font-size: 37px; }
+      .footer-top { align-items: flex-start; flex-direction: column; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="logo">CAFÉ <span>AURORA</span></div>
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#menu">Nuestro café</a>
-      <a href="#nosotros">Nosotros</a>
-      <a href="#visitanos">Visítanos</a>
-    </nav>
+  <div class="announcement">Café de especialidad · Un rincón para disfrutar sin prisa</div>
+
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#inicio">Café <span>Aurora</span><small>Un lugar para volver</small></a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#menu">Carta</a>
+        <a href="#historia">Nuestra historia</a>
+        <a href="#galeria">El espacio</a>
+        <a href="#visita">Encuéntranos</a>
+      </nav>
+      <a class="button nav-contact" href="#visita">Visítanos <span class="arrow">↗</span></a>
+    </div>
   </header>
 
   <main>
-    <section class="hero" id="inicio">
-      <div class="hero-content">
-        <span class="eyebrow">Café de especialidad · Hecho con pasión</span>
-        <h1>Un buen café.<br>Un mejor momento.</h1>
-        <p>Un rincón para desconectar, disfrutar sabores auténticos y convertir los pequeños momentos en grandes recuerdos.</p>
-        <a class="btn" href="#menu">Descubre nuestro café</a>
+    <section class="container hero" id="inicio">
+      <div class="hero-copy">
+        <span class="eyebrow">Café lento, buenos momentos</span>
+        <h1>Hay días que merecen un <em>buen café.</em></h1>
+        <p class="hero-description">
+          Café de especialidad, repostería hecha con cariño y un espacio
+          pensado para detener el reloj. Entra, encuentra tu rincón y quédate un rato.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#menu">Descubre nuestra carta <span class="arrow">→</span></a>
+          <a class="button button-light" href="#historia">Conócenos</a>
+        </div>
+        <div class="hero-note">
+          <span class="note-line"></span>
+          <span>BUEN CAFÉ. INGREDIENTES CUIDADOS. CERO PRISAS.</span>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=85"
+          alt="Café recién preparado en un ambiente cálido"
+          fetchpriority="high">
+        <div class="image-caption">
+          <strong>Tu pausa favorita.</strong>
+          <span>Un pequeño ritual, todos los días.</span>
+        </div>
       </div>
     </section>
 
-    <section id="menu">
+    <section class="values" aria-label="Lo que nos inspira">
+      <div class="container values-inner">
+        <div class="value">
+          <strong>Buen origen</strong>
+          <span>Granos seleccionados con cuidado</span>
+        </div>
+        <div class="value">
+          <strong>Hecho con cariño</strong>
+          <span>Detalles que se notan en cada taza</span>
+        </div>
+        <div class="value">
+          <strong>Sin prisa</strong>
+          <span>Un lugar para disfrutar el momento</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" id="menu">
       <div class="section-heading">
-        <span class="eyebrow">Nuestra selección</span>
-        <h2>Pequeños placeres, grandes sabores.</h2>
-        <p>Ingredientes cuidadosamente seleccionados y preparados para disfrutar sin prisa.</p>
+        <div>
+          <span class="eyebrow">Algo rico te espera</span>
+          <h2 class="serif">De nuestra barra<br>a tu mesa.</h2>
+        </div>
+        <p>Sabores reconfortantes, café preparado al momento y pequeños caprichos para acompañar una buena conversación.</p>
       </div>
 
-      <div class="cards">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80" alt="Taza de café recién preparado">
-          <div class="card-content">
-            <h3>Café de especialidad</h3>
-            <p>Aromas intensos y notas equilibradas en cada taza.</p>
+      <div class="menu-grid">
+        <article class="menu-card">
+          <div class="menu-image">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=85" alt="Taza de café espresso" loading="lazy">
+          </div>
+          <div class="menu-content">
+            <span class="menu-category">La barra de café</span>
+            <div class="menu-title-row">
+              <h3>Espresso Aurora</h3>
+              <span class="price">$6.000</span>
+            </div>
+            <p>Intenso, aromático y con una crema suave. La esencia del café en su forma más pura.</p>
           </div>
         </article>
 
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=80" alt="Postres artesanales">
-          <div class="card-content">
-            <h3>Postres artesanales</h3>
-            <p>Un toque dulce preparado para acompañar tu pausa.</p>
+        <article class="menu-card">
+          <div class="menu-image">
+            <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=85" alt="Café con leche servido en una taza" loading="lazy">
+          </div>
+          <div class="menu-content">
+            <span class="menu-category">Favoritos de la casa</span>
+            <div class="menu-title-row">
+              <h3>Latte de la casa</h3>
+              <span class="price">$9.000</span>
+            </div>
+            <p>Espresso y leche cremosa, con un equilibrio delicado para disfrutar a cualquier hora.</p>
           </div>
         </article>
 
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80" alt="Café servido en una taza">
-          <div class="card-content">
-            <h3>Momentos únicos</h3>
-            <p>Un espacio acogedor para conversar, leer o simplemente respirar.</p>
+        <article class="menu-card">
+          <div class="menu-image">
+            <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=85" alt="Repostería dulce artesanal" loading="lazy">
+          </div>
+          <div class="menu-content">
+            <span class="menu-category">Un toque dulce</span>
+            <div class="menu-title-row">
+              <h3>Pastel del día</h3>
+              <span class="price">$8.000</span>
+            </div>
+            <p>Una porción dulce para acompañar tu bebida favorita y alargar un poquito la pausa.</p>
           </div>
         </article>
+      </div>
+
+      <div class="menu-bottom">
+        <p>Precios e ingredientes de ejemplo para esta demostración.</p>
+        <a class="button button-light" href="#visita">Ven a probarlos <span class="arrow">↗</span></a>
       </div>
     </section>
 
-    <section class="about" id="nosotros">
-      <div>
-        <span class="eyebrow">Nuestra esencia</span>
-        <h2>Más que café, una experiencia.</h2>
-        <p>Creemos que los mejores momentos empiezan con algo sencillo: un buen café, una conversación sincera y un lugar donde sentirse a gusto.</p>
-        <p>Por eso cuidamos cada detalle, desde la selección de nuestros granos hasta la calidez con la que te recibimos.</p>
-        <a class="btn" href="#visitanos">Ven a conocernos</a>
+    <section class="story section" id="historia">
+      <div class="container story-grid">
+        <div class="story-photo">
+          <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1100&q=85" alt="Interior acogedor de una cafetería" loading="lazy">
+        </div>
+        <div class="story-copy">
+          <span class="eyebrow">Nuestra filosofía</span>
+          <h2 class="serif">Lo extraordinario también vive en las cosas sencillas.</h2>
+          <p>
+            Aurora nace de una idea simple: todos necesitamos un lugar donde
+            bajar el ritmo, conversar sin mirar el reloj y disfrutar de algo
+            preparado con cuidado.
+          </p>
+          <p>
+            Nos inspiran los aromas que llenan una habitación, las mesas
+            compartidas y esos pequeños momentos cotidianos que terminan
+            convirtiéndose en recuerdos.
+          </p>
+          <p>
+            Queremos que cada visita se sienta cercana. Que vengas por un café
+            y te quedes porque estás a gusto.
+          </p>
+          <div class="signature">
+            <div class="signature-mark">A</div>
+            <div>
+              <strong>Con cariño, Café Aurora</strong>
+              <span>Un lugar para volver</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1100&q=85" alt="Interior cálido de una cafetería">
     </section>
 
-    <section class="visit" id="visitanos">
-      <span class="eyebrow">Tu próxima pausa te espera</span>
-      <h2>Nos vemos con un café.</h2>
-      <p>Visítanos y descubre tu nuevo rincón favorito.</p>
-      <a class="btn" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer">Contáctanos por WhatsApp</a>
+    <section class="container section" id="galeria">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Pequeños detalles</span>
+          <h2 class="serif">Un ambiente que invita a quedarse.</h2>
+        </div>
+        <p>Una buena taza sabe todavía mejor cuando encuentras el lugar perfecto para disfrutarla.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1000&q=85" alt="Preparación artesanal de café" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=85" alt="Café y granos recién molidos" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=85" alt="Interior luminoso de una cafetería" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1559305616-3f99cd43e353?auto=format&fit=crop&w=800&q=85" alt="Barra de café y espacio acogedor" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=85" alt="Taza de café preparada con cuidado" loading="lazy">
+        </div>
+      </div>
+      <p class="gallery-note">Fotografías ilustrativas para el concepto de Café Aurora.</p>
+    </section>
+
+    <section class="visit" id="visita">
+      <div class="visit-grid">
+        <div class="visit-copy">
+          <span class="eyebrow">Tu próxima pausa</span>
+          <h2 class="serif">Nos vemos al otro lado de la barra.</h2>
+          <p>
+            Guarda un momento para ti. Ven por tu café favorito,
+            descubre algo nuevo de nuestra carta y haz de la pausa
+            la mejor parte de tu día.
+          </p>
+
+          <div class="visit-details">
+            <div>
+              <div class="detail-label">Dónde estamos</div>
+              <div class="detail-value">Dirección de ejemplo<br>El Colegio, Cundinamarca</div>
+            </div>
+            <div>
+              <div class="detail-label">Horario de ejemplo</div>
+              <div class="detail-value">Lun – Sáb<br>8:00 a. m. – 7:00 p. m.</div>
+            </div>
+            <div>
+              <div class="detail-label">Para escribirnos</div>
+              <div class="detail-value">Consulta y pedidos<br>por WhatsApp</div>
+            </div>
+            <div>
+              <div class="detail-label">Te esperamos</div>
+              <div class="detail-value">Café recién preparado<br>y un lugar acogedor</div>
+            </div>
+          </div>
+
+          <a class="button" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer">
+            Hablemos por WhatsApp <span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="visit-image">
+          <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=1200&q=85" alt="Espacio de cafetería con mesas para disfrutar" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="container final-cta">
+      <span class="eyebrow">Hay sitio para ti</span>
+      <h2 class="serif">Las mejores pausas no tienen prisa.</h2>
+      <p>Un buen café, un espacio acogedor y tiempo para disfrutar de las pequeñas cosas.</p>
+      <a class="button" href="#visita">Encuentra tu próximo rincón <span class="arrow">→</span></a>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 Café Aurora · Sitio web de demostración</p>
-    <p>Proyecto conceptual para portafolio. Información y contacto ficticios.</p>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">Café <span>Aurora</span></div>
+          <div class="footer-note">Un lugar para volver.</div>
+        </div>
+        <nav class="footer-links" aria-label="Enlaces del pie de página">
+          <a href="#inicio">Inicio</a>
+          <a href="#menu">Carta</a>
+          <a href="#historia">Nuestra historia</a>
+          <a href="#visita">Contacto</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Café Aurora · Proyecto de demostración</span>
+        <span>Marca, precios, horarios y datos de contacto ficticios.</span>
+      </div>
+    </div>
   </footer>
 </body>
 </html>
-
